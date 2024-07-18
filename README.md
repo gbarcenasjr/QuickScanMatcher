@@ -1,12 +1,9 @@
-# QuickScanMatcher - Linux Bash Script (Version 0.1)
+# QuickScanMatcher (Version 0.1)
 
 Helps users find their list of products using a barcode/QR scanner
 
 There are times at work where other employees are looking for a specific one or group of inventory in a massive pile or storage area. To manually read the serial number (or SN) on each item and try to match them to their specific SN can be timely, if not prone to mistakes. That's why we are given barcode scanners to quickly translate the barcode to the numbers it tied to. However, once the scanner translates the barcode to numbers, we still had to manually verify if the numbers match what we want. I was inspired to automate the process.
 
-## How to use the program
-
-On the terminal: $`bash ~/quickscanmatcher/`
 
 ### List Phase
 
