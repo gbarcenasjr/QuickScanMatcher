@@ -1,2 +1,16 @@
 .vscode
 .vscode/settings.json
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/.gitignore
+.idea/QuickScanMatcher.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
