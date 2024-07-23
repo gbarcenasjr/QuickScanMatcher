@@ -1,4 +1,4 @@
-# QuickScanMatcher (Version 0.1)
+# QuickScanMatcher (Version 0.9)
 
 Helps users find their list of products using a barcode/QR scanner
 
