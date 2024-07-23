@@ -1,4 +1,6 @@
 # Copyright (c) 2024 Gerardo Barcenas Jr.
+import tkinter
+
 
 def editList(inputList: list):
     print("Which SN do you want to edit/delete?")
@@ -20,7 +22,7 @@ def editList(inputList: list):
 
 def foundInList(searchkey: str, inputList: list):
     if searchkey in inputList:
-        print("!!!FOUND!!!\n")
+        print("!!![MATCH FOUND]!!!\n")
     else:
 
         print("[NO MATCH]\n")
@@ -34,7 +36,8 @@ def main():
         print("---LIST MODE---")
         print("Please enter the SN to search \nfor or enter the following commands:")
         print("\"finish\" to continue to Search Mode")
-        print("\"edit\" to edit/delete in the search list")
+        print("\"edit\" to edit/delete in the search list\n")
+        print("(Current List Size = " + str(len(searchList)) + ")")
         barcode = str(input("Input: "))
         print()
 
@@ -52,14 +55,15 @@ def main():
         print("Please enter the SN to search \nfor or enter the following commands:")
         print("\"edit\" to edit/delete in the search list")
         print("\"finish\" to end program")
-        searchInput = str(input())
+        searchInput = str(input("Input: "))
+        print()
 
         if searchInput != "finish" and searchInput != "edit":
             foundInList(searchInput, searchList)
         if searchInput == "edit":
             editList(searchList)
 
-    print("Program finished. Thank you for using Quick Server Scanner!")
+    print("Program finished. Thank you for using Quick Server Scanner!\n")
 
 
 if __name__ == '__main__':
