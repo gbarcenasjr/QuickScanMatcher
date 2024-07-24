@@ -2,12 +2,14 @@
 import os
 # Clearing the Screen
 
-def editList(inputList: list):
+def editList(inputList: list, inputCount: list):
     print("Which SN do you want to edit/delete?")
-    for x in range(len(inputList)):
-        print(("\t" + str(int(x) + 1) + ". " + str(inputList[x])))
-
+    counter = 0
+    for item in inputList:
+        counter += 1
+        print("\t" + str(counter) + ". " + item)
     print()
+
     userIndex = int(input("Input: ")) - 1
 
     print("Please enter new SN to edit or \nleave it blank to delete: ")
@@ -16,23 +18,31 @@ def editList(inputList: list):
 
     if userInput == "":
         inputList.pop(userIndex)
+        inputCount.pop(userIndex)
     else:
         inputList[userIndex] = userInput
+        inputCount[userIndex] = 0
     print()
 
 
-def foundInList(searchkey: str, inputList: list):
-    if searchkey in inputList:
-        print("!!![MATCH FOUND]!!!\n")
+def foundInList(searchkey: str, inputList: list, inputCount: list):
+    os.system('cls')
+    foundSN = False
+    for x in range(len(inputList)):
+        if inputList[x] == searchkey:
+            foundSN = True
+            inputCount[x] += 1
+    if foundSN:
+        print("!!![MATCH FOUND]!!!")
     else:
-
-        print("[NO MATCH]\n")
-    print(searchkey+"\n")
+        print("[NO MATCH]")
+    print("User entered: " + searchkey + "\n")
 
 
 def main():
     os.system('cls')
     searchList = []
+    searchCount = []
     barcode = ""
 
     while barcode != "finish":
@@ -47,19 +57,29 @@ def main():
 
         if barcode != "finish" and barcode != "edit" and barcode != "":
             searchList.append(barcode)
+            searchCount.append(0)
         if barcode == "edit":
-            editList(searchList)
-            
+            editList(searchList, searchCount)
+
         os.system('cls')
 
     searchInput = ""
+
+    print("[Blank]")
+    print("(Please enter SN Below)")
+    print()
+
     while searchInput != "finish":
         print("Search List")
         print("-----------")
-        for item in searchList:
-            print("[ ] " + item)
+        for x in range(len(searchList)):
+            if searchCount[x] == 0:
+                print("[ ] ", end="")
+            else:
+                print("[X] ", end="")
+            print(searchList[x])
         print()
-        
+
         print("---SEARCH MODE---")
         print("Please enter the SN to search \nfor or enter the following commands:")
         print("\"edit\" to edit/delete in the search list")
@@ -68,9 +88,9 @@ def main():
         print()
 
         if searchInput != "finish" and searchInput != "edit":
-            foundInList(searchInput, searchList)
+            foundInList(searchInput, searchList, searchCount)
         if searchInput == "edit":
-            editList(searchList)
+            editList(searchList, searchCount)
 
     print("Program finished. Thank you for using Quick Server Scanner!\n")
 
