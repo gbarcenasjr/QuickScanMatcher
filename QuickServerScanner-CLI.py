@@ -1,6 +1,6 @@
 # Copyright (c) 2024 Gerardo Barcenas Jr.
-import os
-# Clearing the Screen
+from os import system as cmd
+
 
 def editList(inputList: list, inputCount: list):
     print("Which SN do you want to edit/delete?")
@@ -12,6 +12,7 @@ def editList(inputList: list, inputCount: list):
 
     userIndex = int(input("Input: ")) - 1
 
+    print("You selected: " + inputList[userIndex])
     print("Please enter new SN to edit or \nleave it blank to delete: ")
     userInput = str(input())
     userInput.strip()
@@ -25,22 +26,16 @@ def editList(inputList: list, inputCount: list):
     print()
 
 
-def foundInList(searchkey: str, inputList: list, inputCount: list):
-    os.system('cls')
-    foundSN = False
+def isFoundInList(searchkey: str, inputList: list, inputCount: list) -> bool:
     for x in range(len(inputList)):
         if inputList[x] == searchkey:
-            foundSN = True
-            inputCount[x] += 1
-    if foundSN:
-        print("!!![MATCH FOUND]!!!")
-    else:
-        print("[NO MATCH]")
-    print("User entered: " + searchkey + "\n")
+            inputCount[x] = 1
+            return True
+    return False
 
 
 def main():
-    os.system('cls')
+    cmd('cls')
     searchList = []
     searchCount = []
     barcode = ""
@@ -48,28 +43,26 @@ def main():
     while barcode != "finish":
         print("---LIST MODE---")
         print("Please enter the SN to search \nfor or enter the following commands:")
-        print("\"finish\" to continue to Search Mode")
-        print("\"edit\" to edit/delete in the search list\n")
+        print("\t\"finish\" to continue to Search Mode")
+        print("\t\"edit\" to edit/delete in the search list\n")
         print("(Current List Size = " + str(len(searchList)) + ")")
         barcode = str(input("Input: "))
         barcode.strip()
         print()
 
-        if barcode != "finish" and barcode != "edit" and barcode != "":
+        if barcode != "finish" and barcode != "edit" and barcode != "" and barcode not in searchList:
             searchList.append(barcode)
             searchCount.append(0)
         if barcode == "edit":
             editList(searchList, searchCount)
 
-        os.system('cls')
+        cmd('cls')
 
     searchInput = ""
-
-    print("[Blank]")
-    print("(Please enter SN Below)")
-    print()
-
+    isFirstRun = True
     while searchInput != "finish":
+
+        cmd('cls')
         print("Search List")
         print("-----------")
         for x in range(len(searchList)):
@@ -80,15 +73,28 @@ def main():
             print(searchList[x])
         print()
 
+        if isFirstRun:
+            print("[Blank Result]")
+            print("Please enter SN below")
+            isFirstRun = False
+        elif (isFoundInList(searchInput, searchList, searchCount)):
+            print("!!! [MATCH FOUND] !!!")
+            print("User entered: " + searchInput)
+        else:
+            print("[No Match Found]")
+            print("User entered: " + searchInput)
+        print()
+
+
         print("---SEARCH MODE---")
         print("Please enter the SN to search \nfor or enter the following commands:")
-        print("\"edit\" to edit/delete in the search list")
-        print("\"finish\" to end program")
+        print("\t\"edit\" to edit/delete in the search list")
+        print("\t\"finish\" to end program")
         searchInput = str(input("Input: "))
         print()
 
         if searchInput != "finish" and searchInput != "edit":
-            foundInList(searchInput, searchList, searchCount)
+            isFoundInList(searchInput, searchList, searchCount)
         if searchInput == "edit":
             editList(searchList, searchCount)
 
