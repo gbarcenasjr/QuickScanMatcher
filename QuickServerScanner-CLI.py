@@ -76,7 +76,7 @@ def main():
 
         if isFirstRun:
             print("[Blank Result]")
-            print("Please enter SN below")
+            print("(Please enter SN below)")
             isFirstRun = False
         elif (isFoundInList(searchInput, searchList, searchCount)):
             print("!!! [MATCH FOUND] !!!")
