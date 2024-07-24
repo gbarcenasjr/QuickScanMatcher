@@ -1,4 +1,4 @@
-# QuickScanMatcher (Version 0.9)
+# QuickScanMatcher (Version 1.0)
 
 Helps users find their list of products using a barcode/QR scanner
 
@@ -14,14 +14,14 @@ There are times at work where other employees are looking for a specific one or 
 ### Search Phase
 
 1. Use your scanner or type the SN before pressing the **[Enter]** key
-2. You should see a `FOUND` or `NO MATCH` message pop up showing the results
+2. You should see a `!!! [MATCH FONUD] !!!` or `[No Match Found]` message pop up showing the results
 3. The list view will change where SN Found will be marked with "[X]" next to the SN, otherwise, it's marked with "[ ]"
 
 - Example:
   - `[X] G0214` is a found SN
   - `[ ] t7j32` is a SN not yet found
 
-4. If the user wishes to end the program, user needs to type `exit` or `~` (Below the **[ESC]** key while pressing **[SHIFT]**)
+4. If the user wishes to end the program, user needs to type `finish`
 
 ## Developer Goals
 
