@@ -1,6 +1,7 @@
 # MIT License
 # Copyright (c) 2024 Gerardo Barcenas Jr.
 from os import system as cmd
+from datetime import datetime
 
 
 def editList(inputList: list, inputCount: list):
@@ -13,7 +14,7 @@ def editList(inputList: list, inputCount: list):
 
     userIndex = int(input("Input: ")) - 1
 
-    print("You selected: " + inputList[userIndex])
+    print("You selected: " + inputList[userIndex] + "\n")
     print("Please enter new SN to edit or \nleave it blank to delete: ")
     userInput = str(input())
     userInput.strip()
@@ -78,7 +79,7 @@ def main():
             print("[Blank Result]")
             print("(Please enter SN below)")
             isFirstRun = False
-        elif (isFoundInList(searchInput, searchList, searchCount)):
+        elif isFoundInList(searchInput, searchList, searchCount):
             print("!!! [MATCH FOUND] !!!")
             print("User entered: " + searchInput)
         else:
@@ -86,12 +87,12 @@ def main():
             print("User entered: " + searchInput)
         print()
 
-
         print("---SEARCH MODE---")
         print("Please enter the SN to search \nfor or enter the following commands:")
         print("\t\"edit\" to edit/delete in the search list")
         print("\t\"finish\" to end program")
         searchInput = str(input("Input: "))
+        searchInput.strip()
         print()
 
         if searchInput != "finish" and searchInput != "edit":
@@ -99,7 +100,25 @@ def main():
         if searchInput == "edit":
             editList(searchList, searchCount)
 
-    print("Program finished. Thank you for using Quick Server Scanner!\n")
+    print("Program finished. \"results.txt\" flie will be made and in the same folder as this Python file.\n")
+    with open('results.txt', 'w') as file:
+        txt_out = ""
+
+        current_time = datetime.now()
+        formatted_time = current_time.strftime("%d/%m/%Y %H:%M:%S")
+
+        txt_out += "Program finished on " + formatted_time + "\n"
+        txt_out += "Search List\n"
+        txt_out += "-----------\n"
+
+        for x in range(len(searchList)):
+            if searchCount[x] == 0:
+                txt_out += "[ ] "
+            else:
+                txt_out += "[X] "
+            txt_out += searchList[x] + "\n"
+
+        file.write(txt_out)
 
 
 if __name__ == '__main__':
