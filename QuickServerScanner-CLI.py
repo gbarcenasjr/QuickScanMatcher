@@ -2,7 +2,13 @@
 # Copyright (c) 2024 Gerardo Barcenas Jr.
 from os import system as cmd
 from datetime import datetime
+from platform import system as OS_System
 
+def ClearScreen():
+    if OS_System() == "Linux":
+            cmd("clear")
+    elif OS_System() == "Windows":
+        cmd('cls')
 
 def editList(inputList: list, inputCount: list):
     print("Which SN do you want to edit/delete?")
@@ -37,7 +43,7 @@ def isFoundInList(searchkey: str, inputList: list, inputCount: list) -> bool:
 
 
 def main():
-    cmd('cls')
+    ClearScreen()
     searchList = []
     searchCount = []
     barcode = ""
@@ -58,13 +64,13 @@ def main():
         if barcode == "edit":
             editList(searchList, searchCount)
 
-        cmd('cls')
+        ClearScreen()
 
     searchInput = ""
     isFirstRun = True
     while searchInput != "finish":
 
-        cmd('cls')
+        ClearScreen()
         print("Search List")
         print("-----------")
         for x in range(len(searchList)):
@@ -100,12 +106,12 @@ def main():
         if searchInput == "edit":
             editList(searchList, searchCount)
 
-    print("Program finished. \"results.txt\" flie will be made and in the same folder as this Python file.\n")
+    print("Program finished. \"results.txt\" file will be made and in the same folder as this Python file.\n")
     with open('results.txt', 'w') as file:
         txt_out = ""
 
         current_time = datetime.now()
-        formatted_time = current_time.strftime("%d/%m/%Y %H:%M:%S")
+        formatted_time = current_time.strftime("%Y/%m/%d %H:%M:%S")
 
         txt_out += "Program finished on " + formatted_time + "\n"
         txt_out += "Search List\n"
