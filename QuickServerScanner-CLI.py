@@ -2,13 +2,15 @@
 # Copyright (c) 2024 Gerardo Barcenas Jr.
 from os import system as cmd
 from datetime import datetime
-from platform import system as OS_System
+from platform import system as os_system
+
 
 def ClearScreen():
-    if OS_System() == "Linux":
-            cmd("clear")
-    elif OS_System() == "Windows":
+    if os_system() == "Linux":
+        cmd("clear")
+    elif os_system() == "Windows":
         cmd('cls')
+
 
 def editList(inputList: list, inputCount: list):
     print("Which SN do you want to edit/delete?")
@@ -34,9 +36,9 @@ def editList(inputList: list, inputCount: list):
     print()
 
 
-def isFoundInList(searchkey: str, inputList: list, inputCount: list) -> bool:
+def isFoundInList(searchKey: str, inputList: list, inputCount: list) -> bool:
     for x in range(len(inputList)):
-        if inputList[x] == searchkey:
+        if inputList[x] == searchKey:
             inputCount[x] = 1
             return True
     return False
