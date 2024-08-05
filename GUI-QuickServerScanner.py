@@ -20,7 +20,7 @@ def ModeSwitch():
         mode_button.config(text="Switch To [LIST MODE]")
     elif my_text == "Switch To [LIST MODE]":
         entry_label.config(text="[LIST MODE] Enter the SN for the Search List: ")
-        mode_button.config(text='"Switch To [SEARCH MODE]")
+        mode_button.config(text="Switch To [SEARCH MODE]")
 
 
 # ------------------- Main Body (Using Grid) -------------------
