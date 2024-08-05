@@ -8,9 +8,9 @@ GUI.geometry('720x700')
 
 # Functions
 def UserPressedEnter(event):
-    example.insert(0, txt.get())
-    txt.delete(0, 'end')
-    txt.insert(0, "")
+    example.insert(0, user_entry.get())
+    user_entry.delete(0, 'end')
+    user_entry.insert(0, "")
 
 
 def ModeSwitch():
