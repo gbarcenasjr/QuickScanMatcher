@@ -12,7 +12,7 @@ def ClearScreen():
         cmd('cls')
 
 
-def editList(inputList: list, inputCount: list):
+def editList(inputList: list, inputCount: list, inputNote: list):
     print("Which SN do you want to edit/delete?")
     counter = 0
     for item in inputList:
@@ -26,13 +26,16 @@ def editList(inputList: list, inputCount: list):
     print("Please enter new SN to edit or \nleave it blank to delete: ")
     userInput = str(input())
     userInput.strip()
+    # TODO: Add an option to edit notes
 
     if userInput == "":
         inputList.pop(userIndex)
         inputCount.pop(userIndex)
+        inputNote.append(userIndex)
     else:
         inputList[userIndex] = userInput
         inputCount[userIndex] = 0
+
     print()
 
 
@@ -44,9 +47,15 @@ def isFoundInList(searchKey: str, inputList: list, inputCount: list) -> bool:
     return False
 
 
+def addNote(notelist: list):
+    note = input("Do you want to add a note? (Leave blank if not): ")
+    notelist.append(note)
+
+
 def main():
     ClearScreen()
     searchList = []
+    searchNotes = []
     searchCount = []
     barcode = ""
 
@@ -62,6 +71,7 @@ def main():
 
         if barcode != "finish" and barcode != "edit" and barcode != "" and barcode not in searchList:
             searchList.append(barcode)
+            addNote(searchNotes)
             searchCount.append(0)
         if barcode == "edit":
             editList(searchList, searchCount)
@@ -80,7 +90,7 @@ def main():
                 print("[ ] ", end="")
             else:
                 print("[X] ", end="")
-            print(searchList[x])
+            print(searchList[x] + "  \"" + searchNotes[x] + "\"")
         print()
 
         if isFirstRun:
@@ -124,7 +134,8 @@ def main():
                 txt_out += "[ ] "
             else:
                 txt_out += "[X] "
-            txt_out += searchList[x] + "\n"
+            #     searchList[x] + "  \"" + searchNotes[x] + "\"\n"
+            txt_out += searchList[x] + "  \"" + searchNotes[x] + "\"\n"
 
         file.write(txt_out)
 
