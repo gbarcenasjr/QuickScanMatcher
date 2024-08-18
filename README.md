@@ -14,7 +14,7 @@ There are times at work where other employees are looking for a specific one or 
 ### Search Phase
 
 1. Use your scanner or type the SN before pressing the **[Enter]** key
-2. You should see a `!!! [MATCH FONUD] !!!` or `[No Match Found]` message pop up showing the results
+2. You should see a `!!! [MATCH FOUND] !!!` or `[No Match Found]` message pop up showing the results
 3. The list view will change where SN Found will be marked with "[X]" next to the SN, otherwise, it's marked with "[ ]"
 
 - Example:
